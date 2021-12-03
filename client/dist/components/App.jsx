@@ -11,20 +11,27 @@ const App = (props) => {
   const [countries, updateCountries] = useState([]);
   const [input, updateInput] = useState('');
 
-  /* Get countries data */
-  useEffect(() => {
-    getCountries()
-    .then((results) => {
+  let getData = function () {
+    getCountries().then((results) => {
       console.log(results.data.rows);
-      updateCountries(results.data.rows);
-    })
-  }, []);
+      updateCountries(results.data.rows) })
+  };
+
+  /* Get countries data */
+  useEffect(getData, []);
 
   /* Create longitude/latitude pins state */
   const [pins, updatePins] = useState([34.0522, -118.2347]);
 
   var addPin = function (array) {
     updatePins(array);
+  }
+
+  let handleClick = function (input) {
+    addCountry(input).then(() => {
+      console.log("country submitted!");
+      getData();
+    }).catch((err) => console.log(err))
   }
 
   /* Update fetch data update state */
@@ -35,10 +42,7 @@ const App = (props) => {
       <h1> Wish List </h1>
       </div>
       <input className="add" placeholder="Add country by code (e.g. USA)" onChange={(e) => {updateInput(e.target.value)}} value={input}/>
-      <button className="button" onClick={
-        () => addCountry(input)
-        .then(() => console.log('country submitted'))
-        .catch((err) => console.log(err))}> Add </button>
+      <button className="button" onClick={() => {handleClick(input)}}> Add </button>
       <Map pins={pins}/>
       <CountriesList addPin={addPin} countries={countries}/>
     </div>

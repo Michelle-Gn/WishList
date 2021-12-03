@@ -10,10 +10,10 @@ const Country = (props) => {
     <Card.Body>
       <Card.Title>{props.item.country}</Card.Title>
       <Card.Text>
-        <div className="capital"> {props.item.capital}</div>
-        <div className="subregion"> {props.item.subregion} </div>
-        <div className="currency">{props.item.currency}</div>
-        <div className="population">{props.item.people}</div>
+        <div className="capital">Capital: {props.item.capital}</div>
+        <div className="subregion">Region: {props.item.subregion} </div>
+        <div className="currency">Currency: {props.item.currency}</div>
+        <div className="population">Population: {props.item.people}</div>
       </Card.Text>
       <Share info={props.item}/>
       <button onClick={() => props.addPin(props.item.latlng)}>Pin on Map</button>

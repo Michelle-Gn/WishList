@@ -5,20 +5,19 @@ const sendMessage = require('../utils/sendMessage.js');
 module.exports  = {
   addCountry: function (req, res) {
     var country = req.body.country;
-
+    console.log('country', country);
     getDataByCountry(country)
     .then((results) => {
       var country = results.data.name;
       var capital = results.data.capital;
       var subregion = results.data.subregion;
       var currency = results.data.currencies[0].name;
-      var people = results.data.population;
+      var people = results.data.population.toLocaleString("en-US");
       var latlng = results.data.latlng;
 
-      console.log('latlng', latlng);
+      console.log('population', people);
       var sql = `insert into schema2.countries (country, capital, subregion, currency, people, latlng) values ('${country}', '${capital}', '${subregion}', '${currency}', '${people}', ARRAY[${latlng[0]}, ${latlng[1]}])`
-
-      console.log('sql', sql);
+      console.log(sql);
 
       db.query(sql, (err, result) => {
         if (err) {

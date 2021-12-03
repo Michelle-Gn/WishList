@@ -17,7 +17,7 @@ create table schema2.countries (
   capital varchar(100),
   subregion varchar(150),
   currency varchar(100),
-  people bigint,
+  people varchar(15),
   latlng integer[]
 );
 
