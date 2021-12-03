@@ -1,0 +1,41 @@
+.pieChart{
+  height: 50vh;
+  width: 50vw;
+}
+
+.search-bar{
+  width: 1000px;
+  margin: auto;
+}
+
+.product-container {
+  display: grid;
+  grid-template-columns: 500px 500px;
+  width: 1000px;
+  margin: auto;
+}
+
+.individual-product {
+  padding: 20px;
+}
+
+.usage,.owner{
+  font-weight: bold;
+}
+
+.title {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+.button {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 12px;
+  margin: 5px;
+}
+
+.button:hover {background-color: #e7e7e7;
+}
+
+.leaflet-container {width:1000px; height:400px;}
