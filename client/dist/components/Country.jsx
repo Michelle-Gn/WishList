@@ -16,7 +16,7 @@ const Country = (props) => {
         <div className="population">Population: {props.item.people}</div>
       </Card.Text>
       <Share info={props.item}/>
-      <button onClick={() => props.addPin(props.item.latlng)}>Pin on Map</button>
+      <button className="button" onClick={() => props.addPin(props.item.latlng)}>Pin on Map</button>
     </Card.Body>
   </Card>
   )

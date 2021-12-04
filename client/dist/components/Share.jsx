@@ -13,7 +13,7 @@ var Share = (props) => {
 
     return (
       <>
-        <button className="createTripButton" onClick={handleShow}>
+        <button className="button" onClick={handleShow}>
           Text to Friend
         </button>
 
