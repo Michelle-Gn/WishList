@@ -1,6 +1,18 @@
-.search-bar{
+.map{
+  padding: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.leaflet-container{
+  padding: 20px;
+}
+
+.add{
   width: 1000px;
-  margin: auto;
+  display: inline;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .product-container {
@@ -10,8 +22,9 @@
   margin: auto;
 }
 
-.individual-product {
+.individual-country {
   padding: 20px;
+  margin: 50px;
 }
 
 .usage,.owner{
@@ -21,6 +34,7 @@
 .title {
   font-family: 'Noto Sans JP', sans-serif;
   color: black;
+  text-align: center;
 }
 
 .button {

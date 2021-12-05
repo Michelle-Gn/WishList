@@ -41,9 +41,13 @@ const App = (props) => {
       <div className="title">
       <h1> Wish List </h1>
       </div>
-      <input className="add" placeholder="Add country by code (e.g. USA)" onChange={(e) => {updateInput(e.target.value)}} value={input}/>
+      <div className="add">
+      <input placeholder="Add country by code (e.g. USA)" onChange={(e) => {updateInput(e.target.value)}} value={input}/>
       <button className="button" onClick={() => {handleClick(input)}}> Add </button>
+      </div>
+      <div className="map">
       <Map pins={pins}/>
+      </div>
       <CountriesList addPin={addPin} countries={countries}/>
     </div>
   )

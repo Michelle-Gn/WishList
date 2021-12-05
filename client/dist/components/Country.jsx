@@ -5,7 +5,7 @@ import Share from './Share.jsx';
 
 const Country = (props) => {
   return (
-  <Card className = 'individual-product' style={{ width: '20rem'}}>
+  <Card className = 'individual-country' style={{ width: '20rem'}}>
     <Card.Img variant="top" src={`https://source.unsplash.com/1600x900/?${props.item.country}`}/>
     <Card.Body>
       <Card.Title>{props.item.country}</Card.Title>
