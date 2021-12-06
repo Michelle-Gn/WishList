@@ -3,7 +3,7 @@ Wish List is an app that lets users explore key facts about countries around the
 
 # Technologies Used:
 Frontend via React with Hooks </br>
-Backend via express.js and postgresSQL</br>
+Backend via express.js and postgreSQL</br>
 Styling via React-Bootstrap </br>
 Map via Leaflet library </br>
 Public API: https://restcountries.com/</br>
