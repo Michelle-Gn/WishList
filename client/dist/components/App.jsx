@@ -13,7 +13,6 @@ const App = (props) => {
 
   let getData = function () {
     getCountries().then((results) => {
-      console.log(results.data.rows);
       updateCountries(results.data.rows) })
   };
 

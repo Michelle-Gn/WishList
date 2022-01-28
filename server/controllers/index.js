@@ -52,6 +52,11 @@ module.exports  = {
         console.log(message);
         res.status(201).send('message sent!');
       })
+  },
+
+  login: (req, res) => {
+
+    res.send(500).send('User not found!')
   }
 }
 
