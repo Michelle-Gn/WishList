@@ -1,53 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import CountriesList from './CountriesList.jsx';
-import getCountries from '../../helper/getCountries.jsx';
-import addCountry from '../../helper/addCountry.jsx';
-import Map from '../components/Map.jsx';
+import React, {useState} from 'react';
+import Explore from './Explore.jsx';
+import Log from './Log.jsx';
+import Navbar from '../components/Nav.jsx';
 
 const App = (props) => {
 
-  /* Create countries state */
-  const [countries, updateCountries] = useState([]);
-  const [input, updateInput] = useState('');
+  const [view, updateView] = useState('log');
 
-  let getData = function () {
-    getCountries().then((results) => {
-      updateCountries(results.data.rows) })
-  };
-
-  /* Get countries data */
-  useEffect(getData, []);
-
-  /* Create longitude/latitude pins state */
-  const [pins, updatePins] = useState([34.0522, -118.2347]);
-
-  var addPin = function (array) {
-    updatePins(array);
+  const changeView = (option) => {
+    updateView(option);
   }
 
-  let handleClick = function (input) {
-    addCountry(input).then(() => {
-      console.log("country submitted!");
-      getData();
-    }).catch((err) => console.log(err))
+  const getView = () => {
+    if (view === 'log') {
+      return <Log changeView={changeView}/>
+    }
+    if (view === 'explore') {
+      return <Explore changeView={changeView}/>
+    }
   }
 
-  /* Update fetch data update state */
-  // if (countries.length !== 0){
   return (
     <div>
-      <div className="title">
-      <h1> Wish List </h1>
+      <div>
+        <Navbar changeView={changeView}/>
       </div>
-      <div className="add">
-      <input placeholder="Add country by code (e.g. USA)" onChange={(e) => {updateInput(e.target.value)}} value={input}/>
-      <button className="button" onClick={() => {handleClick(input)}}> Add </button>
+      <div>
+        {getView()}
       </div>
-      <div className="map">
-      <Map pins={pins}/>
-      </div>
-      <CountriesList addPin={addPin} countries={countries}/>
     </div>
   )
 }
