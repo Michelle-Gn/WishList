@@ -1,3 +1,17 @@
+.nav {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.options {
+  vertical-align: bottom;
+}
+
+#log, #explore {
+  vertical-align: bottom;
+}
+
 .map{
   padding: 20px;
   margin-left: 20px;

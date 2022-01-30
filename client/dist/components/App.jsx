@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
+import Navbar from '../components/Nav.jsx';
 import Explore from './Explore.jsx';
 import Log from './Log.jsx';
-import Navbar from '../components/Nav.jsx';
+import Create from './Create.jsx';
 
 const App = (props) => {
 
@@ -18,13 +19,14 @@ const App = (props) => {
     if (view === 'explore') {
       return <Explore changeView={changeView}/>
     }
+    if (view === 'create') {
+      return <Create changeView={changeView}/>
+    }
   }
 
   return (
     <div>
-      <div>
-        <Navbar changeView={changeView}/>
-      </div>
+      <Navbar changeView={changeView}/>
       <div>
         {getView()}
       </div>

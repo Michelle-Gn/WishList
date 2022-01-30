@@ -2,15 +2,17 @@ import React from 'react';
 
 const Navbar = (props) => {
   return (
-    <div>
+    <div className="nav">
       <div className="logo">
         <img src="../logo.png"/>
       </div>
-      <div className="selection" onClick={() => {props.changeView('log')}}>
-        LOG
-      </div>
-      <div className="selection" onClick={() => {props.changeView('explore')}}>
-        EXPLORE
+      <div className="options">
+        <div id="log" onClick={() => {props.changeView('log')}}>
+          LOG
+        </div>
+        <div id="explore" onClick={() => {props.changeView('explore')}}>
+          EXPLORE
+        </div>
       </div>
     </div>
   )
