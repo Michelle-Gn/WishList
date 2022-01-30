@@ -4,7 +4,7 @@ const Navbar = (props) => {
   return (
     <div>
       <div className="logo">
-        WISHLIST
+        <img src="../logo.png"/>
       </div>
       <div className="selection" onClick={() => {props.changeView('log')}}>
         LOG
