@@ -1,6 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react';
 
 const Create = (props) => {
+
+  const [borderColor, updateColor] = useState({happy: '', chill: '', tired: ''});
+  const [call, updateCall] = useState({call: 0});
 
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, '0');
@@ -9,10 +12,35 @@ const Create = (props) => {
 
   today = mm + '/' + dd + '/' + yyyy;
 
-  const textareaStyle = {
-    width: '800px',
-    height: '50px',
-    border: '1px solid rgba(0, 0, 0, 0.05)',
+  let changeBorder = (id) => {
+    console.log('borderColor', borderColor);
+    console.log('id', id);
+    console.log('values', borderColor[id]);
+    if (borderColor[id] === '') {
+      updateColor({...borderColor, [id]: '3px solid rgba(19, 94, 74, 0.8)'});
+    } else {
+      updateColor({...borderColor, [id]: ''});
+    }
+  };
+
+  const styles = {
+    textAreaStyle: {
+      width: '800px',
+      height: '50px',
+      border: '3px solid rgba(19, 94, 74, 0.8)'
+    },
+
+    happy: {
+      border: borderColor.happy
+    },
+
+    chill: {
+      border: borderColor.chill
+    },
+
+    tired: {
+      border: borderColor.tired
+    }
   }
 
   return (
@@ -21,21 +49,21 @@ const Create = (props) => {
         {today}
       </div>
       <div className="form">
-        <form style={textareaStyle}>
-          <textarea style={textareaStyle} className="summary" type="text" placeholder="Today I..."></textarea>
+        <form style={styles.textareaStyle}>
+          <textarea style={styles.textareaStyle} className="summary" type="text" placeholder="Today I..."></textarea>
         </form>
       </div>
       <div className="mood">
         Overall Mood
       </div>
       <div className="choose-mood">
-        <div className="mood">
+        <div id="happy" style={styles.happy} onClick={() => {changeBorder('happy')}}>
           <img src="../happy.png"/>
         </div>
-        <div className="mood">
+        <div className="chill" style={styles.chill} onClick={() => {changeBorder('chill')}}>
           <img src="../chillin.png"/>
         </div>
-        <div className="mood">
+        <div className="tired" style={styles.tired} onClick={() => {changeBorder('tired')}}>
           <img src="../tired.png"/>
         </div>
       </div>
