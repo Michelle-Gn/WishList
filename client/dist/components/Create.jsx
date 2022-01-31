@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 
 const Create = (props) => {
 
-  const [borderColor, updateColor] = useState({happy: '', chill: '', tired: ''});
-  const [call, updateCall] = useState({call: 0});
+  const [mood, updateMood] = useState({happy: '', chill: '', tired: ''});
+  const [call, updateCall] = useState({yes: '', no: ''});
+  const [ranking, updateRanking] = useState({once: '', twice: '', thrice: ''});
 
   let today = new Date();
   let dd = String(today.getDate()).padStart(2, '0');
@@ -12,14 +13,23 @@ const Create = (props) => {
 
   today = mm + '/' + dd + '/' + yyyy;
 
-  let changeBorder = (id) => {
-    console.log('borderColor', borderColor);
-    console.log('id', id);
-    console.log('values', borderColor[id]);
-    if (borderColor[id] === '') {
-      updateColor({...borderColor, [id]: '3px solid rgba(19, 94, 74, 0.8)'});
+  const moodBorder = '3px solid rgba(19, 94, 74, 0.8)';
+  const callFill = '#F6BB42';
+  const rankingFill = '#F6BB42';
+
+  let select = (id, state, updateState, formatString) => {
+    if (state[id] === '') {
+      let newState = {};
+      for (let key in state) {
+        if (key === id) {
+          newState[key] = formatString;
+        } else {
+          newState[key] = '';
+        }
+      }
+      updateState({...state, ...newState});
     } else {
-      updateColor({...borderColor, [id]: ''});
+      updateState({...state, [id]: ''});
     }
   };
 
@@ -29,17 +39,29 @@ const Create = (props) => {
       height: '50px',
       border: '3px solid rgba(19, 94, 74, 0.8)'
     },
-
     happy: {
-      border: borderColor.happy
+      border: mood.happy
     },
-
     chill: {
-      border: borderColor.chill
+      border: mood.chill
     },
-
     tired: {
-      border: borderColor.tired
+      border: mood.tired
+    },
+    yes: {
+      backgroundColor: call.yes
+    },
+    no: {
+      backgroundColor: call.no
+    },
+    once: {
+      backgroundColor: ranking.once
+    },
+    twice: {
+      backgroundColor: ranking.twice
+    },
+    thrice: {
+      backgroundColor: ranking.thrice
     }
   }
 
@@ -57,13 +79,13 @@ const Create = (props) => {
         Overall Mood
       </div>
       <div className="choose-mood">
-        <div id="happy" style={styles.happy} onClick={() => {changeBorder('happy')}}>
+        <div id="happy" style={styles.happy} onClick={() => {select('happy', mood, updateMood, moodBorder)}}>
           <img src="../happy.png"/>
         </div>
-        <div className="chill" style={styles.chill} onClick={() => {changeBorder('chill')}}>
+        <div id="chill" style={styles.chill} onClick={() => {select('chill', mood, updateMood, moodBorder)}}>
           <img src="../chillin.png"/>
         </div>
-        <div className="tired" style={styles.tired} onClick={() => {changeBorder('tired')}}>
+        <div id="tired" style={styles.tired} onClick={() => {select('tired', mood, updateMood, moodBorder)}}>
           <img src="../tired.png"/>
         </div>
       </div>
@@ -71,10 +93,10 @@ const Create = (props) => {
         Called Home?
       </div>
       <div className="choose-called">
-        <div className="call-choice">
+        <div id="yes" style={styles.yes} onClick={() => {select('yes', call, updateCall, callFill)}}>
           Yes!
         </div>
-        <div className="call-choice">
+        <div id="no" style={styles.no} onClick={() => {select('no', call, updateCall, callFill)}}>
           No
         </div>
       </div>
@@ -82,13 +104,13 @@ const Create = (props) => {
         Thoughts on today's activities?
       </div>
       <div className="choose-ranking">
-        <div className="ranking-type">
+        <div id="once" style={styles.once} onClick={() => {select('once', ranking, updateRanking, rankingFill)}}>
           Once in a lifetime is enough...
         </div>
-        <div className="ranking-type">
+        <div id="twice" style={styles.twice} onClick={() => {select('twice', ranking, updateRanking, rankingFill)}}>
           Would do again
         </div>
-        <div className="ranking-type">
+        <div id="thrice" style={styles.thrice} onClick={() => {select('thrice', ranking, updateRanking, rankingFill)}}>
           MUST TELL EVERYONE I KNOW!
         </div>
       </div>
