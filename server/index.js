@@ -6,6 +6,8 @@ const controllers = require('../server/controllers')
 const json = express.json()
 app.use(json)
 
+app.get('/logs', controllers.getLogs)
+app.post('/logs', controllers.addLog)
 app.post('/country', controllers.addCountry)
 app.get('/country', controllers.getCountries)
 app.post('/message', controllers.shareCountry)

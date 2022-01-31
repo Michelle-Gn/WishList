@@ -23,3 +23,14 @@ create table schema2.countries (
 
 create index idx_id on schema2.countries(id);
 
+drop table if exists schema2.logs;
+create table schema2.logs (
+  id serial,
+  entrydate date,
+  entrytext varchar(280),
+  entrycall integer,
+  mood integer,
+  ranking integer
+);
+
+

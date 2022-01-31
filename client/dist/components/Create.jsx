@@ -77,10 +77,9 @@ const Create = (props) => {
         {today}
       </div>
       <div className="form">
-        <form style={styles.textareaStyle}>
+        <form>
           <textarea
-          style={styles.textareaStyle}
-          id="summary"
+          style={styles.textAreaStyle}
           type="text"
           placeholder="Today I..."
           value={journal}

@@ -3,6 +3,36 @@ const getDataByCountry = require('../utils/getData.js');
 const sendMessage = require('../utils/sendMessage.js');
 
 module.exports  = {
+  getLogs: function (req, res) {
+    let sql = 'select * from schema2.logs order by entrydate desc';
+    db.query(sql, (err, result) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        console.log(result);
+        res.status(200).send(result.rows);
+      }
+    })
+  },
+
+  addLog: function (req, res) {
+    let entrydate = req.body.entrydate;
+    let entrytext = req.body.entrytext;
+    let entrycall = req.body.entrycall;
+    let mood = req.body.mood;
+    let ranking = req.body.ranking;
+    let sql = `insert into schema2.logs (entrydate, entrytext, entrycall, mood, ranking) values ('${entrydate}', '${entrytext}', '${entrycall}', '${mood}', '${ranking}')`;
+
+    db.query(sql, (err, results) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        console.log(results);
+        res.status(201).send('success!');
+      }
+    })
+  },
+
   addCountry: function (req, res) {
     var country = req.body.country;
     console.log('country', country);
@@ -52,11 +82,6 @@ module.exports  = {
         console.log(message);
         res.status(201).send('message sent!');
       })
-  },
-
-  login: (req, res) => {
-
-    res.send(500).send('User not found!')
   }
 }
 
