@@ -12,6 +12,15 @@
   vertical-align: bottom;
 }
 
+.choose-mood, .choose-called, .choose-ranking {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.mood {
+  border: black
+}
+
 .map{
   padding: 20px;
   margin-left: 20px;

@@ -9,29 +9,34 @@ const Create = (props) => {
 
   today = mm + '/' + dd + '/' + yyyy;
 
+  const textareaStyle = {
+    width: '800px',
+    height: '50px',
+    border: '1px solid rgba(0, 0, 0, 0.05)',
+  }
+
   return (
     <div className="entry-card">
       <div className="date">
         {today}
       </div>
       <div className="form">
-        <form>
-          <textarea className="summary" type="text" placeholder="Today I..."></textarea>
+        <form style={textareaStyle}>
+          <textarea style={textareaStyle} className="summary" type="text" placeholder="Today I..."></textarea>
         </form>
       </div>
       <div className="mood">
         Overall Mood
       </div>
       <div className="choose-mood">
-        <i className="far fa-meh"></i>
         <div className="mood">
-          Chillin'
+          <img src="../happy.png"/>
         </div>
         <div className="mood">
-          Could be better
+          <img src="../chillin.png"/>
         </div>
         <div className="mood">
-          Tired
+          <img src="../tired.png"/>
         </div>
       </div>
       <div className="called-home">
@@ -45,20 +50,23 @@ const Create = (props) => {
           No
         </div>
       </div>
-      <div className="Ranking">
-        <div className="Ranking-type">
+      <div className="ranking">
+        Thoughts on today's activities?
+      </div>
+      <div className="choose-ranking">
+        <div className="ranking-type">
           Once in a lifetime is enough...
         </div>
-        <div className="Ranking-type">
+        <div className="ranking-type">
           Would do again
         </div>
-        <div className="Ranking-type">
+        <div className="ranking-type">
           MUST TELL EVERYONE I KNOW!
         </div>
       </div>
       <div className="Submit">
-        <button>Add</button>
-        <button onClick={() => props.changeView('log')}>Delete</button>
+        <button className="button">Add</button>
+        <button className="button" onClick={() => props.changeView('log')}>Delete</button>
       </div>
     </div>
   )
