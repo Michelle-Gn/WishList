@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 
 const Create = (props) => {
 
+  const [journal, updateJournal] = useState('');
   const [mood, updateMood] = useState({happy: '', chill: '', tired: ''});
   const [call, updateCall] = useState({yes: '', no: ''});
   const [ranking, updateRanking] = useState({once: '', twice: '', thrice: ''});
@@ -32,6 +33,11 @@ const Create = (props) => {
       updateState({...state, [id]: ''});
     }
   };
+
+  let writeJournal = (e) => {
+    e.preventDefault();
+    updateJournal(e.target.value);
+  }
 
   const styles = {
     textAreaStyle: {
@@ -72,7 +78,14 @@ const Create = (props) => {
       </div>
       <div className="form">
         <form style={styles.textareaStyle}>
-          <textarea style={styles.textareaStyle} className="summary" type="text" placeholder="Today I..."></textarea>
+          <textarea
+          style={styles.textareaStyle}
+          id="summary"
+          type="text"
+          placeholder="Today I..."
+          value={journal}
+          onChange={(e) => {writeJournal(e)}}>
+          </textarea>
         </form>
       </div>
       <div className="mood">
@@ -120,7 +133,6 @@ const Create = (props) => {
       </div>
     </div>
   )
-
 }
 
 export default Create;
