@@ -71,12 +71,21 @@ const Create = (props) => {
     }
   }
 
+  const CHAR_LIMIT = 150;
+
+  // submitJournal () => {
+  //   // if any pieces of state are completely blank
+  //     // alert the user that they have not completed the form
+  //   // otherwise send the body of the log in a post request
+  //   // change the view to the log page
+  // }
+
   return (
     <div className="entry-card">
       <div className="date">
         {today}
       </div>
-      <div className="form">
+      <div className="journal">
         <form>
           <textarea
           style={styles.textAreaStyle}
@@ -85,6 +94,10 @@ const Create = (props) => {
           value={journal}
           onChange={(e) => {writeJournal(e)}}>
           </textarea>
+          {journal.length > CHAR_LIMIT &&
+          <div className="char-error">
+            {`You're ${journal.length - CHAR_LIMIT} characters over the limit`}
+          </div>}
         </form>
       </div>
       <div className="mood">

@@ -1,6 +1,17 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import getLogs from '../../helper/getLogs.jsx';
 
 const Log = (props) => {
+
+  const [logs, updateLogs] = useState([]);
+
+  let getData = () => {
+    getLogs().then((results) => {
+      updateLogs(results.data.rows) })
+  };
+
+  useEffect(getData, [])
+
   return (
     <div className="log-section">
       <button className="button" onClick={() => props.changeView('create')}>
