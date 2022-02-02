@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import getLogs from '../../helper/getLogs.jsx';
+import Entry from './Entry.jsx';
 
 const Log = (props) => {
 
   const [logs, updateLogs] = useState([]);
+  console.log('logs', logs);
 
   let getData = () => {
     getLogs().then((results) => {
-      updateLogs(results.data.rows) })
+      updateLogs(results.data)})
   };
 
   useEffect(getData, [])
@@ -18,12 +20,11 @@ const Log = (props) => {
         Add Log
       </button>
       <div className="entries">
-        <div className="entry">
-          1/30/2022 - Today I ate squid for the first time
-        </div>
-        <div className="entry">
-          1/31/2022 - Today I bungee jumped off of a building
-        </div>
+        {logs.map((entry, index) => {
+          return (
+            <Entry entry={entry} key={index}/>
+          )
+        })}
       </div>
     </div>
   )
