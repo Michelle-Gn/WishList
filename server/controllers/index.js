@@ -15,6 +15,18 @@ module.exports  = {
     })
   },
 
+  getLog: function (req, res) {
+    let postId = req.params.id;
+    let sql = `select * from schema2.logs where id = ${postId}`;
+    db.query(sql, (err, result) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(200).send(result.rows);
+      }
+    })
+  },
+
   addLog: function (req, res) {
     let entrydate = req.body.entrydate;
     let entrytext = req.body.entrytext;
