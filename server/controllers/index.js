@@ -16,12 +16,14 @@ module.exports  = {
   },
 
   getLog: function (req, res) {
+    console.log('fired');
     let postId = req.params.id;
     let sql = `select * from schema2.logs where id = ${postId}`;
     db.query(sql, (err, result) => {
       if (err) {
         res.status(500).send(err);
       } else {
+        console.log(result.rows);
         res.status(200).send(result.rows);
       }
     })
