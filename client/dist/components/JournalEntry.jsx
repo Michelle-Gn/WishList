@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import getLog from '../../helper/getLog.jsx';
+import EntryCard from '../components/EntryCard.jsx';
 
 const JournalEntry = (props) => {
 
@@ -22,11 +23,10 @@ const JournalEntry = (props) => {
   } else {
     return (
       <div className="journal">
-        {journal[0].entrytext}
+        <EntryCard journal={journal}/>
       </div>
     )
   }
-
 }
 
 export default JournalEntry;
