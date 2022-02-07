@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import addJournal from '../../helper/addPost.jsx';
+import checkDate from '../../helper/checkDate.jsx';
 
 const Create = (props) => {
 
+  const [valid, updateValid] = useState('');
   const [journal, updateJournal] = useState('');
   const [mood, updateMood] = useState({happy: '', chill: '', tired: ''});
   const [call, updateCall] = useState({yes: '', no: ''});
@@ -14,6 +16,14 @@ const Create = (props) => {
   let yyyy = today.getFullYear();
 
   today = mm + '/' + dd + '/' + yyyy;
+
+  const populateValid = () => {
+    checkDate(today).then((results) => {
+      updateValid(results.data);
+    })
+  }
+
+  useEffect(populateValid, []);
 
   const moodBorder = '3px solid rgba(19, 94, 74, 0.8)';
   const callFill = '#F6BB42';
@@ -75,25 +85,31 @@ const Create = (props) => {
   const CHAR_LIMIT = 150;
 
   const submitJournal = () => {
-    let valid = true;
+    let isValid = true;
     // if any pieces of state are completely blank
     if (journal.length === 0 || journal.length > CHAR_LIMIT) {
-      valid = false;
+      isValid = false;
+    }
+
+    if (!valid) {
+      isValid = false;
     }
 
     const isBlank = (element) => {return element === ''};
 
     if (Object.values(mood).every(isBlank)) {
-      valid = false;
+      isValid = false;
     };
     if (Object.values(call).every(isBlank)) {
-      valid = false;
+      isValid = false;
     };
     if (Object.values(ranking).every(isBlank)) {
-      valid = false;
+      isValid = false;
     };
 
-    if (valid === false) {
+    if (!valid) {
+      alert('You have already submitted a journal entry today!')
+    } else if (isValid === false) {
       alert('Please fill out all fields')
       // otherwise send the body of the log in a post request
     } else {

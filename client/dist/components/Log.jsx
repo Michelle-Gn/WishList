@@ -11,7 +11,6 @@ const Log = (props) => {
   let getData = () => {
     getLogs().then((results) => {
       updateLogs(results.data)
-      console.log('logs', logs);
     })
   };
 
@@ -26,15 +25,17 @@ const Log = (props) => {
       <button className="button" onClick={() => props.changeView('create')}>
         Add Log
       </button>
-      <div className="entries">
-        {logs.map((entry, index) => {
-          return (
-            <Entry entry={entry} key={index} changeView={changeView}/>
-          )
-        })}
+      <div className="journal-section">
+        <div className="entries">
+          {logs.map((entry, index) => {
+            return (
+              <Entry entry={entry} key={index} changeView={changeView}/>
+            )
+          })}
+        </div>
+        {postId.length > 0 &&
+          <JournalEntry postId={postId}/>}
       </div>
-      {postId.length > 0 &&
-        <JournalEntry postId={postId}/>}
     </div>
   )
 }

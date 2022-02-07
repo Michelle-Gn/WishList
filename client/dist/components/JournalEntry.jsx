@@ -12,9 +12,7 @@ const JournalEntry = (props) => {
 
   let getData = () => {
     getLog(props.postId).then((results) => {
-      console.log('journal fired!');
       updateJournal(results.data);
-      console.log('journal', journal);
     })
   };
 

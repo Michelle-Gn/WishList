@@ -29,6 +29,24 @@ module.exports  = {
     })
   },
 
+  checkLog: function (req, res) {
+    let date = req.body.date;
+    console.log('date', date);
+    let sql = `select * from schema2.logs where entrydate = '${date}'`;
+    console.log('sql', sql);
+    db.query(sql, (err, result) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        if (result.rows.length === 0) {
+          res.status(201).send('true');
+        } else {
+          res.status(201).send('false');
+        }
+      }
+    })
+  },
+
   addLog: function (req, res) {
     let entrydate = req.body.entrydate;
     let entrytext = req.body.entrytext;

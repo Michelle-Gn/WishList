@@ -8,10 +8,29 @@
   width: 275px;
   display: flex;
   justify-content: space-between;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 3px solid #135E4A;
+  background-color: #F6BB42;
 }
 
-.entry-text{
+.journal, .entry-card {
+  width: 800px;
+  margin-right: 50px;
+}
+
+.journal-section {
+  margin-left: 50px;
+}
+
+.entry-text {
   text-align: left;
+}
+
+.journal-section {
+  display: flex;
+  justify-content: space-between;
 }
 
 .options {
@@ -73,12 +92,11 @@
 .button {
   background-color: white;
   color: black;
-  border: 1px solid black;
+  border: 3px solid #135E4A;
   border-radius: 12px;
   margin: 5px;
 }
 
-.button:hover {background-color: #e7e7e7;
-}
+.button:hover {background-color: #F6BB42;}
 
 .leaflet-container {width:1000px; height:400px;}

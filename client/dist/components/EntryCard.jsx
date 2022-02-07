@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import moment from 'moment';
 
 const EntryCard = (props) => {
 
@@ -45,7 +46,7 @@ const EntryCard = (props) => {
   return (
     <div className="entry-card">
       <div className="date">
-        {props.journal[0].date}
+        {moment(props.journal[0].entrydate).format('MMMM Do YYYY')}
       </div>
       <div className="journal" style={styles.textAreaStyle}>
         {props.journal[0].entrytext}
