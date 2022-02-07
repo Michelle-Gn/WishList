@@ -4,11 +4,17 @@ import EntryCard from '../components/EntryCard.jsx';
 
 const JournalEntry = (props) => {
 
+  const moodBorder = '3px solid rgba(19, 94, 74, 0.8)';
+  const callFill = '#F6BB42';
+  const rankingFill = '#F6BB42';
+
   const [journal, updateJournal] = useState([]);
 
   let getData = () => {
     getLog(props.postId).then((results) => {
-      updateJournal(results.data)
+      console.log('journal fired!');
+      updateJournal(results.data);
+      console.log('journal', journal);
     })
   };
 

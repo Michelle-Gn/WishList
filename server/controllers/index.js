@@ -36,6 +36,7 @@ module.exports  = {
     let mood = req.body.mood;
     let ranking = req.body.ranking;
     let sql = `insert into schema2.logs (entrydate, entrytext, entrycall, mood, ranking) values ('${entrydate}', '${entrytext}', '${entrycall}', '${mood}', '${ranking}')`;
+    console.log(req.body);
 
     db.query(sql, (err, results) => {
       if (err) {

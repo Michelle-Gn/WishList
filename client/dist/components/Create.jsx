@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import addJournal from '../../helper/addPost.jsx';
 
 const Create = (props) => {
 
@@ -73,12 +74,75 @@ const Create = (props) => {
 
   const CHAR_LIMIT = 150;
 
-  // submitJournal () => {
-  //   // if any pieces of state are completely blank
-  //     // alert the user that they have not completed the form
-  //   // otherwise send the body of the log in a post request
-  //   // change the view to the log page
-  // }
+  const submitJournal = () => {
+    let valid = true;
+    // if any pieces of state are completely blank
+    if (journal.length === 0 || journal.length > CHAR_LIMIT) {
+      valid = false;
+    }
+
+    const isBlank = (element) => {return element === ''};
+
+    if (Object.values(mood).every(isBlank)) {
+      valid = false;
+    };
+    if (Object.values(call).every(isBlank)) {
+      valid = false;
+    };
+    if (Object.values(ranking).every(isBlank)) {
+      valid = false;
+    };
+
+    if (valid === false) {
+      alert('Please fill out all fields')
+      // otherwise send the body of the log in a post request
+    } else {
+      const entryObj = createEntry();
+      console.log('entry object', entryObj);
+      addJournal(entryObj).then((results) => {
+          console.log(results);
+          // change the view to the log page
+          props.changeView('log');
+        })
+    }
+  }
+
+  const createEntry = () => {
+    let entryObj = {
+      entrydate: today,
+      entrytext: journal,
+      entrycall: 0,
+      mood: 0,
+      ranking: 0
+    };
+
+    if (call.yes.length > 0) {
+      entryObj.entrycall = 0;
+    }
+    if (call.no.length > 0) {
+      entryObj.entrycall = 1;
+    }
+    if (mood.happy.length > 0) {
+      entryObj.mood = 0;
+    }
+    if (mood.chill.length > 0) {
+      entryObj.mood = 1;
+    }
+    if (mood.tired.length > 0) {
+      entryObj.mood = 2;
+    }
+    if (ranking.once.length > 0) {
+      entryObj.ranking = 0;
+    }
+    if (ranking.twice.length > 0) {
+      entryObj.ranking = 1;
+    }
+    if (ranking.thrice.length > 0) {
+      entryObj.ranking = 2;
+    }
+
+    return entryObj;
+  }
 
   return (
     <div className="entry-card">
@@ -140,7 +204,7 @@ const Create = (props) => {
         </div>
       </div>
       <div className="Submit">
-        <button className="button">Add</button>
+        <button className="button" onClick={() => submitJournal()}>Add</button>
         <button className="button" onClick={() => props.changeView('log')}>Delete</button>
       </div>
     </div>
