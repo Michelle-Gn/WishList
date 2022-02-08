@@ -33,4 +33,4 @@ create table schema2.logs (
   ranking integer
 );
 
-
+copy schema2.logs from '/Users/michelleguan/Applications/WishList/Sampledata.csv' delimiter ',' csv header;

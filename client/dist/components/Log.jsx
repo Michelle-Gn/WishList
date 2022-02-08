@@ -6,12 +6,39 @@ import JournalEntry from './JournalEntry.jsx';
 const Log = (props) => {
 
   const [logs, updateLogs] = useState([]);
+  const [loading, updateLoading] = useState(false);
+  const [page, updatePage] = useState(0);
+  const [prevY, updatePrevY] = useState(0);
   const [postId, updatePost] = useState('');
 
+  const handleObserver = (entities, observer) => {
+    const y = entities[0].boundingClientRect.y;
+    if (prevY > y) {
+      const lastId = logs[logs.length - 1].id;
+      getLogs(lastId);
+      updatePage(lastId);
+    }
+    updatePrevY(y);
+  }
+
   let getData = () => {
-    getLogs().then((results) => {
-      updateLogs(results.data)
+    updateLoading(true);
+    getLogs(page).then((results) => {
+      updateLogs([...logs, ...results.data]);
+      updateLoading(false);
     })
+
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 1.0
+    };
+
+    let observer = new IntersectionObserver(
+      handleObserver, options
+    );
+
+    observer.observe(loadingRef);
   };
 
   useEffect(getData, []);

@@ -4,6 +4,9 @@
 logs
 *.log
 
+# CSVs
+*.csv
+
 # Runtime data
 pids
 *.pid

@@ -4,6 +4,12 @@ const sendMessage = require('../utils/sendMessage.js');
 
 module.exports  = {
   getLogs: function (req, res) {
+    // if req.body === 'null'
+      // select * from schema2.logs
+      // sort by descending date, limit 50
+    // else
+      // select * from schema2.logs where id < last id pulled,
+      // sort by descending date, limit 50
     let sql = 'select * from schema2.logs order by entrydate desc';
     db.query(sql, (err, result) => {
       if (err) {
