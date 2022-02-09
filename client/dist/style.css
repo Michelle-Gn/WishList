@@ -4,6 +4,11 @@
   justify-content: space-between;
 }
 
+.entries {
+  height: 500px;
+  overflow-y: auto;
+}
+
 .entry {
   width: 275px;
   display: flex;
@@ -22,15 +27,12 @@
 
 .journal-section {
   margin-left: 50px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .entry-text {
   text-align: left;
-}
-
-.journal-section {
-  display: flex;
-  justify-content: space-between;
 }
 
 .options {

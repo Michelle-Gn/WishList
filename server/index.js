@@ -6,7 +6,7 @@ const controllers = require('../server/controllers')
 const json = express.json()
 app.use(json)
 
-app.get('/logs', controllers.getLogs)
+app.get('/entries/:page', controllers.getLogs)
 app.get('/logs/:id', controllers.getLog)
 app.post('/logs/date', controllers.checkLog)
 app.post('/logs', controllers.addLog)
