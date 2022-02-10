@@ -17,6 +17,7 @@ const Country = (props) => {
       </Card.Text>
       <Share info={props.item}/>
       <button className="button" onClick={() => props.addPin(props.item.latlng)}>Pin on Map</button>
+      <button className="button" onClick={() => props.handleDelete(props.item.country)}>Delete</button>
     </Card.Body>
   </Card>
   )

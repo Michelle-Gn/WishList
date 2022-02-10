@@ -20,15 +20,28 @@
   background-color: #F6BB42;
 }
 
+.create-container {
+  display: flex;
+  justify-content: center;
+}
+
 .journal, .entry-card {
   width: 800px;
   margin-right: 50px;
 }
 
+.called-home, .mood, .ranking {
+  text-align: center;
+  border: 3px solid #135E4A;
+  background-color: #F6BB42;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .journal-section {
   margin-left: 50px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .entry-text {
@@ -52,17 +65,12 @@
   justify-content: space-evenly;
 }
 
-.mood {
-  border: black
+.map {
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.map{
-  padding: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.leaflet-container{
+.leaflet-container {
   padding: 20px;
 }
 

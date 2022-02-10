@@ -3,6 +3,7 @@ import axios from 'axios';
 import CountriesList from './CountriesList.jsx';
 import getCountries from '../../helper/getCountries.jsx';
 import addCountry from '../../helper/addCountry.jsx';
+import deleteCountry from '../../helper/deleteCountry.jsx';
 import Map from '../components/Map.jsx';
 
 
@@ -34,6 +35,12 @@ const Explore = () => {
     }).catch((err) => console.log(err))
   }
 
+  let handleDelete = function (country) {
+    deleteCountry(country).then(() => {
+      getData();
+    }).catch((err) => console.log(err))
+  }
+
   /* Update fetch data update state */
   // if (countries.length !== 0){
   return (
@@ -45,7 +52,7 @@ const Explore = () => {
       <div className="map">
       <Map pins={pins}/>
       </div>
-      <CountriesList addPin={addPin} countries={countries}/>
+      <CountriesList handleDelete={handleDelete} addPin={addPin} countries={countries}/>
     </div>
   )
 }

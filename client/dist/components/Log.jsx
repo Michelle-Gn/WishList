@@ -8,62 +8,23 @@ const Log = (props) => {
   const [logs, updateLogs] = useState([]);
   const [loading, updateLoading] = useState(false);
   const [page, updatePage] = useState(0);
-  // const [prevY, updatePrevY] = useState(0);
   const [postId, updatePost] = useState('');
-  // const loadingRef = useRef(null);
-
-  // const handleObserver = (entities, observer) => {
-  //   let y = entities[0].boundingClientRect.y;
-  //   if (prevY > y) {
-  //     let lastId = logs[logs.length - 1].id;
-  //     updateLoading(true);
-  //     getLogs(lastId).then((results) => {
-  //       updateLogs([...logs, ...results.data]);
-  //       updateLoading(false);
-  //     });
-  //     updatePage(lastId);
-  //   }
-  //   updatePrevY(y);
-  //   console.log('prevY', prevY, 'y', y);
-  // }
 
   const pageUpdate = () => {
     updatePage(logs[logs.length -1].entrydate);
   }
 
   let getData = () => {
-    // updateLoading(true);
     getLogs(page).then((results) => {
       updateLogs([...logs, ...results.data]);
-      // updateLoading(false);
     })
-
-    // const options = {
-    //   root: null,
-    //   rootMargin: "0px",
-    //   threshold: 1.0
-    // };
-
-    // let observer = new IntersectionObserver(
-    //   handleObserver, options
-    // );
-
-    // observer.observe(loadingRef.current);
   };
 
   useEffect(getData, [page]);
 
-  // Create a changeView handler that will be passed down
-  let changeView = (post) => {
-    updatePost(post);
+  let changeView = (postDate) => {
+    updatePost(postDate);
   }
-
-  // const loadingCSS = {
-  //   height: "100px",
-  //   margin: "30px"
-  // }
-
-  // const loadingTextCSS = {display: loading ? "block" : "none" };
 
   return (
     <div className="log-section">

@@ -34,8 +34,8 @@ module.exports  = {
 
   getLog: function (req, res) {
     console.log('fired');
-    let postId = req.params.id;
-    let sql = `select * from schema2.logs where id = ${postId}`;
+    let date = req.params.date.substring(0,10);
+    let sql = `select * from schema2.logs where entrydate::date = '${date}'`;
     db.query(sql, (err, result) => {
       if (err) {
         res.status(500).send(err);
@@ -116,6 +116,19 @@ module.exports  = {
           res.status(500).send(err);
         } else {
           res.status(200).send(result)
+        }
+      })
+  },
+
+  deleteCountry: function (req, res) {
+    let country = req.params.country;
+    console.log('country', country);
+    let sql = `delete from schema2.countries where country = '${country}'`;
+      db.query(sql, (err, result) => {
+        if (err) {
+          res.status(404).send(err);
+        } else {
+          res.status(200).send('deleted!');
         }
       })
   },
