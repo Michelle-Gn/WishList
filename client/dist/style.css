@@ -39,6 +39,10 @@
   vertical-align: bottom;
 }
 
+.char-error {
+  color: red;
+}
+
 #log, #explore {
   vertical-align: bottom;
 }

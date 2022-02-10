@@ -28,7 +28,7 @@ const Log = (props) => {
   // }
 
   const pageUpdate = () => {
-    updatePage(logs[logs.length -1].id);
+    updatePage(logs[logs.length -1].entrydate);
   }
 
   let getData = () => {
@@ -80,8 +80,10 @@ const Log = (props) => {
         </div>
       {postId.length > 0 &&
         <JournalEntry postId={postId}/>}
-        <button className="button" onClick={() => {pageUpdate()}}>See older</button>
       </div>
+      <button className="button" onClick={() => {pageUpdate()}}>
+        See older
+      </button>
     </div>
   )
 }
